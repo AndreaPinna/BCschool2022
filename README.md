@@ -1,12 +1,12 @@
 # BCschool2022
 ## Demo projects for the 3rd Blockchain and DLT school
 
-Requirements: a linux terminal and a browser with the metamask extention.
+Requirements: a linux terminal and a browser with the metamask extension.
 
 Open a linux terminal.
 
 ### Empty project:
-Open the folders _/empty_ and run:
+Open the folders _/emptyProject_ and run:
 ```bash
 python3 -m http.server
 ```
