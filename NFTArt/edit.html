@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          name="viewport">
+    <!-- Bootstrap CSS -->
+    <link crossorigin="anonymous"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+    <title>Pagina Galleria</title>
+</head>
+
+
+<body>
+<!-- jQuery  -->
+<script
+        crossorigin="anonymous"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        src="http://code.jquery.com/jquery-3.4.1.min.js">
+</script>
+
+<!-- Bootstrap -->
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+<!-- ethers v5 -->
+<script
+        src="https://cdn.ethers.io/lib/ethers-5.6.umd.min.js"
+        type="application/javascript"></script>
+
+<script src="js/editor.js"></script>
+
+
+<div class="container">
+	<h1>3rd Blockchain and DLT school</h1>
+	<h3>NFT art - a web 3.0 and NFT gallery of Artworks</h3> 
+	<p> Editor page  <button onclick="location = 'index.html'">Gallery Page</button> </p>
+    <h3>Edit your Artworks</h3>
+</div>
+
+
+<div/>
+
+
+<div class="container">
+
+
+    <p> Check the address of the contract and press Load to know the IDs of your works.</p>
+    <div class="form-group" id="inputAddress">
+        <label for="cAddress">Address:</label>
+        <input class="form-control" id="cAddress" type="text"
+               value="0x80341DeDFd89aA05BF9553B12bd5Ec7714Ecd592">
+    </div>
+
+
+    <button id="buttonSub" type="button">Load</button>
+    <button id="buttonCreate" type="button">
+        Create a new Artwork Token</button>
+    <div id="numberOfcontentRow">
+        Tu hai <span class="numberOfworks">?</span> token di opere d'arte.
+    </div>
+
+
+
+
+    <div class="container">
+        <h2>The list of your tokens</h2>
+        <p>Chose a token ID to Edit.</p>
+        <form>
+            <div class="form-group" class="compositionSelector">
+                <label for="sel1">Artworks:</label>
+                <select class="form-control" id="sel1">
+                   <!-- &lt;!&ndash;                <option>1</option>&ndash;&gt;
+                    &lt;!&ndash;                <option>2</option>&ndash;&gt;
+                    &lt;!&ndash;                <option>3</option>&ndash;&gt;
+                    &lt;!&ndash;                <option>4</option>&ndash;&gt;
+             -->   </select>
+
+                <button id="buttonEdit" type="button">Edit</button>
+            </div>
+        </form>
+    </div>
+
+
+
+    <div class="container" id="artworksRow">
+
+                    <!-- Artwork to edit  -->
+    </div>
+
+    
+    
+
+    <!-- Editor Input section -->
+    <div id="EditorArtworkTemplate" style="display: none">
+        <!--    <div class="col-sm-5 col-md-9 col-lg-10">-->
+        <div class="col-lg-10">
+            <div class="panel panel-default panel-artwork" value="">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Opera d'arte</h3>
+                </div>
+                <div class="panel-body" id="panelBody">
+
+
+                    <strong>ID</strong>: <span class="ID">?</span><br/>
+                    <label class="form-label" for="uri">URI</label>
+                    <input type="text" id="uri" class="form-control-uri" value = "prova" />
+
+                    </span><br/><br/>
+                    <label class="form-label" for="artistName">Artist's name</label>
+                    <input type="text" id="artistName" class="form-control-name" value = "" />
+
+                    </span><br/><br/>
+                    <label class="form-label" for="price">Price</label>
+                    <input type="number" id="price" class="form-control-price"
+                           value = 0 />
+                    </span><br/><br/>
+
+                    <label class="form-label" for="state">State: 0,1,2</label>
+                    </span><br/><br/>
+                    <input type="number" id="state" class="form-control-state"
+                           value = 0 />
+                    </span><br/><br/>
+
+                    <button class="btn-default btn-save active" id="save" type="button" value="0">EDIT
+                    </button>
+
+                    <strong>State</strong>:
+                    <span class="state">?</span><br/>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+
+</div>
+
+
+</body>
+</html>
