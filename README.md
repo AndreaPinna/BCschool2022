@@ -15,6 +15,7 @@ Open a browser and access the server
 
 [http://localhost:8000/empty.html](http://localhost:8000/empty.html)
 
+Metamask could ask you to connect one or more addresses and you will have to accept the connection.
 
 Open the browser console to try the web3 commands.
 
