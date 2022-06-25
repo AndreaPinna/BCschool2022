@@ -9,16 +9,21 @@ var numberOfArtworks = 0;
 const basePrice = 1000; // token price
 
 //2. provider and singer
+// MetaMask requires requesting permission to connect users accounts
 const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+provider.send("eth_requestAccounts", []);
 const signer = provider.getSigner();
 
 //3. starting the app
+
+
+
 if (provider) {
      startApp(provider);
  } else {
      console.log('Please install MetaMask!');
 }
-
 
 
 
@@ -202,9 +207,9 @@ $(document).ready(function () {
 
 
 
-
 // loading the number of tokens owned by the caller.
 function getMyArtworks(address, callback) {
+
 // uses the method getJSON of Jquery and sends the result to the 
 // anonimoys function that create a new instance of a contract wrapper
 // and uses the the contract to execute the contract function.
@@ -249,7 +254,7 @@ function buyToken(address, callback) {
     $.getJSON(abiPath, async function (cABI) {
 			
 			
-		///	DIY
+		//	DIY
 					
 			
 		// we set an "ovveriders" to set the parameter of the transaction
@@ -315,26 +320,6 @@ function artWorkSet(
 }
 
 
-
-////////
-//// utility not in page
-//////
-
-// a debugging function...
-function getOwnerOf(address, id,callback) {
-
-    $.getJSON(abiPath, async function (cABI) {
-        console.log("Json Caricato");
-        const contract = new ethers.Contract(address, cABI, provider);
-        console.log("Contratto caricato");
-        var data = await contract.ownerOf(id);
-        console.log("owner of", id, data);
-        lastOwnerOf = data;
-        callback(data);
-
-
-    });
-}
 
 
 

@@ -10,6 +10,7 @@ const basePrice = 1000; // token price
 
 //2. provider and singer
 const provider = new ethers.providers.Web3Provider(window.ethereum);
+provider.send("eth_requestAccounts", []);
 const signer = provider.getSigner();
 
 //3. starting the app

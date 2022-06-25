@@ -9,6 +9,7 @@ var contractAddress  = '0x11adb11509943Cf30c0B6209D2B037809AfEab2a';
 
 //2. provider and singer
 const provider = new ethers.providers.Web3Provider(window.ethereum);
+provider.send("eth_requestAccounts", []);
 const signer = provider.getSigner();
 
 //3. starting the app
