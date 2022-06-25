@@ -23,7 +23,7 @@ Open the browser console to try the web3 commands.
 ### NFTArt
 The project is in the folder _/NFTArt_ . 
 The Gallery part is ready to work.
-The Editor part is to be complete during the lab.
+The Editor part is to be completed during the lab.
 
 
 Open the folders _/NFTArt_ and run:
