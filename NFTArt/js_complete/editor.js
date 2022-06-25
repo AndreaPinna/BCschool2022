@@ -227,8 +227,11 @@ function getMyArtworks(address, callback) {
 async function getArtworkData(id, address, callback) {
 
     $.getJSON(abiPath, async function (cABI) {
-		
-		// uses getArtWorkData(id)
+        const contract = new ethers.Contract(address, cABI, provider);
+        var data = await contract.getArtWorkData(id);
+        console.log("Data Read");
+        //currentArtwork = data;
+        callback(data);
 
     });
 }
@@ -248,24 +251,24 @@ function buyToken(address, callback) {
 
     $.getJSON(abiPath, async function (cABI) {
 			
-			
-		///	DIY
-					
-			
 		// we set an "ovveriders" to set the parameter of the transaction
 		// The basePrice is the price of the token
 		
-		// let overrides = {
-		//	... 
+        let overrides = {
+            value: basePrice,
+            gasLimit: 750000
+
+        };
 
         // Creating a writing contract instance by using the signer
-		// ...
+        const contract_rw = new ethers.Contract(address, cABI, signer);
         
 		// Creating a transaction and its esecution.
         try{
-			
-		// ...
-           
+            const tx = await contract_rw.createToken(overrides);
+            const receipt =  await tx.wait();
+
+            callback(receipt);
 
         }
         catch (e) {
@@ -296,16 +299,22 @@ function artWorkSet(
 
     $.getJSON(abiPath, async function (cABI) {
 
+        let overrides = {
+            gasLimit: 750000
+        };
 
-
-        // let overrides = {
-    
-        
-
-        // const contract_rw = 
+        const contract_rw = new ethers.Contract(address, cABI, signer);
 
            try{
-			   //...
+            const tx = await contract_rw.artWorkSet(
+                id,
+                artistName,
+                artURI,
+                ethers.BigNumber.from(price),
+                overrides);
+
+            const receipt =  await tx.wait();
+            callback(receipt);
         }
         catch (e) {
             console.log(e);

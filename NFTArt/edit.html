@@ -13,7 +13,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
 
-    <title>Pagina Galleria</title>
+    <title>Editor Page</title>
 </head>
 
 
@@ -38,11 +38,28 @@
 <script src="js/editor.js"></script>
 
 
+
+
+<!-- NAVBAR -->
+
 <div class="container">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<a class="navbar-brand" href="#">NFT art - a web 3.0 and NFT gallery of Artworks</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">Gallery</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Editor<span class="sr-only">(current)</span></a>
+      </li>
+      </ul>
+      </div>
+    </nav>
 	<h1>3rd Blockchain and DLT school</h1>
-	<h3>NFT art - a web 3.0 and NFT gallery of Artworks</h3> 
-	<p> Editor page  <button onclick="location = 'index.html'">Gallery Page</button> </p>
-    <h3>Edit your Artworks</h3>
 </div>
 
 
@@ -51,12 +68,12 @@
 
 <div class="container">
 
-
+	<h3>Edit your Artworks</h3>
     <p> Check the address of the contract and press Load to know the IDs of your works.</p>
     <div class="form-group" id="inputAddress">
         <label for="cAddress">Address:</label>
         <input class="form-control" id="cAddress" type="text"
-               value="0x80341DeDFd89aA05BF9553B12bd5Ec7714Ecd592">
+               value="0x11adb11509943Cf30c0B6209D2B037809AfEab2a">
     </div>
 
 
@@ -64,7 +81,7 @@
     <button id="buttonCreate" type="button">
         Create a new Artwork Token</button>
     <div id="numberOfcontentRow">
-        Tu hai <span class="numberOfworks">?</span> token di opere d'arte.
+        You have <span class="numberOfworks">?</span> Artworks tokens
     </div>
 
 
