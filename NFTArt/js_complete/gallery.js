@@ -1,23 +1,21 @@
 //1. global variables
-var myAccounts = ethereum.request(
-    {
-        method: 'eth_accounts'
-    });
 var abiPath = "solidity/NFTARTGallery.abi.json";
-var contractAddress  = '0x11adb11509943Cf30c0B6209D2B037809AfEab2a';
-//'0x80341DeDFd89aA05BF9553B12bd5Ec7714Ecd592';
+var contractAddress  = '0x11adb11509943Cf30c0B6209D2B037809AfEab2a'; 
 
 //2. provider and singer
 const provider = new ethers.providers.Web3Provider(window.ethereum);
-const signer = provider.getSigner();
+var signer;
 
 //3. starting the app
-if (provider) {
+window.addEventListener('load', async () => {
+	await provider.send("eth_requestAccounts", []);
+	if (provider) {
+	signer = provider.getSigner();
      startApp(provider);
  } else {
      console.log('Please install MetaMask!');
 }
-
+});
 
 
 
