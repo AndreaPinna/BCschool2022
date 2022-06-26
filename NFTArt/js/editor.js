@@ -1,29 +1,31 @@
 //1. global variables
+/*
 var myAccounts = ethereum.request(
     {
         method: 'eth_accounts'
     });
+*/
+
 var abiPath = "solidity/NFTARTGallery.abi.json";
 var contractAddress  = '0x11adb11509943Cf30c0B6209D2B037809AfEab2a'; 
 var numberOfArtworks = 0;
 const basePrice = 1000; // token price
 
-//2. provider and singer
-// MetaMask requires requesting permission to connect users accounts
-const provider = new ethers.providers.Web3Provider(window.ethereum);
 
-provider.send("eth_requestAccounts", []);
-const signer = provider.getSigner();
+//2. provider and singer
+const provider = new ethers.providers.Web3Provider(window.ethereum);
+var signer;
 
 //3. starting the app
-
-
-
-if (provider) {
+window.addEventListener('load', async () => {
+	await provider.send("eth_requestAccounts", []);
+	if (provider) {
+	signer = provider.getSigner();
      startApp(provider);
  } else {
      console.log('Please install MetaMask!');
 }
+});
 
 
 
@@ -207,9 +209,9 @@ $(document).ready(function () {
 
 
 
+
 // loading the number of tokens owned by the caller.
 function getMyArtworks(address, callback) {
-
 // uses the method getJSON of Jquery and sends the result to the 
 // anonimoys function that create a new instance of a contract wrapper
 // and uses the the contract to execute the contract function.
@@ -232,8 +234,11 @@ function getMyArtworks(address, callback) {
 async function getArtworkData(id, address, callback) {
 
     $.getJSON(abiPath, async function (cABI) {
-		
-		// uses getArtWorkData(id)
+        const contract = new ethers.Contract(address, cABI, provider);
+        var data = await contract.getArtWorkData(id);
+        console.log("Data Read");
+        //currentArtwork = data;
+        callback(data);
 
     });
 }
@@ -253,24 +258,24 @@ function buyToken(address, callback) {
 
     $.getJSON(abiPath, async function (cABI) {
 			
-			
-		//	DIY
-					
-			
 		// we set an "ovveriders" to set the parameter of the transaction
 		// The basePrice is the price of the token
 		
-		// let overrides = {
-		//	... 
+        let overrides = {
+            value: basePrice,
+            gasLimit: 750000
+
+        };
 
         // Creating a writing contract instance by using the signer
-		// ...
+        const contract_rw = new ethers.Contract(address, cABI, signer);
         
 		// Creating a transaction and its esecution.
         try{
-			
-		// ...
-           
+            const tx = await contract_rw.createToken(overrides);
+            const receipt =  await tx.wait();
+
+            callback(receipt);
 
         }
         catch (e) {
@@ -301,16 +306,22 @@ function artWorkSet(
 
     $.getJSON(abiPath, async function (cABI) {
 
+        let overrides = {
+            gasLimit: 750000
+        };
 
-
-        // let overrides = {
-    
-        
-
-        // const contract_rw = 
+        const contract_rw = new ethers.Contract(address, cABI, signer);
 
            try{
-			   //...
+            const tx = await contract_rw.artWorkSet(
+                id,
+                artistName,
+                artURI,
+                ethers.BigNumber.from(price),
+                overrides);
+
+            const receipt =  await tx.wait();
+            callback(receipt);
         }
         catch (e) {
             console.log(e);
@@ -320,6 +331,26 @@ function artWorkSet(
 }
 
 
+
+////////
+//// utility not in page
+//////
+
+// a debugging function...
+function getOwnerOf(address, id,callback) {
+
+    $.getJSON(abiPath, async function (cABI) {
+        console.log("Json Caricato");
+        const contract = new ethers.Contract(address, cABI, provider);
+        console.log("Contratto caricato");
+        var data = await contract.ownerOf(id);
+        console.log("owner of", id, data);
+        lastOwnerOf = data;
+        callback(data);
+
+
+    });
+}
 
 
 
