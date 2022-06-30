@@ -225,7 +225,7 @@ function getMyArtworks(address, callback) {
 
 
 
-// Loading token data from the contract
+// Function 2.  Loading token data from the contract
 async function getArtworkData(id, address, callback) {
 
     $.getJSON(abiPath, async function (cABI) {
@@ -245,7 +245,7 @@ async function getArtworkData(id, address, callback) {
 // Write Methods (non-constant) need signer
 
 
-// 1. buy a token
+// Function 1. buy a token
 function buyToken(address, callback) {
 
     $.getJSON(abiPath, async function (cABI) {
@@ -287,7 +287,7 @@ function buyToken(address, callback) {
 
 //
 
-// 2. modify token info
+// Function 3. save token info
 function artWorkSet(
     address,
     id,
